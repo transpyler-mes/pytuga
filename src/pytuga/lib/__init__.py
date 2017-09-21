@@ -18,6 +18,7 @@ from .tuga_io import *
 from .tuga_math import *
 from .tuga_std import *
 from .tuga_strings import *
+from .tuga_draw import *
 
 # Register synonyms
 from transpyler import utils

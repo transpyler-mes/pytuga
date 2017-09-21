@@ -7,8 +7,8 @@ from pytuga.transpyler import pytuga_transpyler
 from transpyler import utils as tuga_util
 
 __all__ = [
-    # Tugalib namespace
-    'tugalib_namespace', 'init',
+    # Default namespace
+    'init',
 
     # Compiling and executing
     'compile', 'transpile', 'exec', 'eval', 'is_incomplete_source',
@@ -31,42 +31,6 @@ _locals = _builtins.locals
 
 # Additional injected builtin names
 _extra_builtins = set()
-
-
-#
-# Core API
-#
-def tugalib_namespace(forbidden=False):
-    """
-    Return a dictionary with all public tugalib functions.
-
-    If forbidden is True, import the tugalib.tuga_forbidden module.
-    """
-
-    blacklist = {
-        'tuga_draw', 'tuga_forbidden', 'tuga_io', 'tuga_math',
-        'tuga_std', 'tuga_strings', 'turtlelib', 'util',
-    }
-    blacklist.update(dir(tuga_util))
-
-    ns = {name: getattr(tugalib, name) for name in dir(tugalib)}
-
-    if forbidden:
-        mod = importlib.import_module('pytuga.lib.forbidden')
-        for name in mod.__all__:
-            ns[name] = getattr(mod, name)
-
-    # Remove private methods, variables and forbidden values
-    for name in list(ns):
-        if name.startswith('_'):
-            del ns[name]
-        elif name.isupper():
-            del ns[name]
-        elif name in blacklist:
-            del ns[name]
-
-    return ns
-
 
 def init(curses=True, extra_builtins=None):
     """
