@@ -135,4 +135,5 @@ def _input(*args):
 
 
 def _filechooser(do_open):
-    return ler_texto('Nome do arquivo: ')
+    if do_open is True:
+        return ler_texto('Nome do arquivo: ')
