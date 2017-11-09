@@ -84,6 +84,3 @@ def test_ordenado():
 
 	assert(std.ordenado([5, 2, 3, 1, 4]) == [1, 2, 3, 4, 5])
 
-def test_texto():
-
-	assert(std.texto(42) == "42")

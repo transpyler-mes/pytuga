@@ -1,4 +1,4 @@
-import pytest
+mimport pytest
 
 import pytuga.lib.tuga_strings as strg
 
